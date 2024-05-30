@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/pages/register.dart';
 
 import '../fields/fields.dart';
 import '../fields/text_button.dart';
 import '../theme.dart';
+import 'login.dart';
 
 
-class SignInPage extends StatelessWidget {
-  const SignInPage({Key? key}) : super(key: key);
+class SignUpPage extends StatelessWidget {
+  const SignUpPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,13 +19,22 @@ class SignInPage extends StatelessWidget {
         ),
         children: [
           Container(
-            margin: EdgeInsets.only(top: 50),
-            child: Image.asset(
-              'assets/img_login.png',
+            margin: EdgeInsets.only(top: 100),
+            child: Text(
+              "Hello user!\n Register for our application",
+              style: whiteTextStyle.copyWith(
+                fontSize: 20,
+                fontWeight: semiBold,
+              ),
+              textAlign: TextAlign.center,
             ),
           ),
           SizedBox(
             height: 5,
+          ),
+          CustomField(
+            iconUrl: 'assets/icon_name.png',
+            hint: 'Username',
           ),
           CustomField(
             iconUrl: 'assets/icon_email.png',
@@ -34,33 +44,17 @@ class SignInPage extends StatelessWidget {
             iconUrl: 'assets/icon_password.png',
             hint: 'Password',
           ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: Container(
-              child: TextButton(
-                onPressed: () {
-                  // Navigator.push(
-                    // context,
-                    // MaterialPageRoute(builder: (context) => ForgotPassPage()),
-                  // );
-                },
-                child: Text(
-                  "Forgot Password?",
-                  style: whiteTextStyle.copyWith(
-                    fontSize: 16,
-                    fontWeight: semiBold,
-                  ),
-                ),
-              ),
-            ),
+          CustomField(
+            iconUrl: 'assets/icon_password.png',
+            hint: 'Confirm password',
           ),
           CustomTextButton(
-            title: 'Login',
+            title: 'Register',
             margin: EdgeInsets.only(top: 50),
           ),
           Container(
             margin: EdgeInsets.only(
-              top: 30,
+              top: 40,
               bottom: 74,
             ),
             child: Row(
@@ -70,11 +64,11 @@ class SignInPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SignUpPage()),
+                      MaterialPageRoute(builder: (context) => SignInPage()),
                     );
                   },
                   child: Text(
-                    "Don't have an account? Register now.",
+                    "Log in!",
                     style: whiteTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: semiBold,
