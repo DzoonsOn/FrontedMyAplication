@@ -59,3 +59,52 @@ Future<User?> getUser(String token) async {
     return null;
   }
 }
+
+Future<dynamic> registerUser(
+    String username,
+    String email,
+    String password,
+    String confirm_password,
+    ) async {
+  Map<String, dynamic> data = {
+    "username": username,
+    "email": email,
+    "password1": password,
+    "password2": confirm_password,
+  };
+
+  var url = Uri.parse("$baseUrl/user/auth/registration/");
+  var res = await http.post(
+    url,
+    body: data,
+  );
+
+  // "key":"0ed6082de696dbf2671145344b6d7281024f6925"
+
+  Map json = jsonDecode(res.body);
+  if (res.statusCode == 200 || res.statusCode == 201) {
+    if (json.containsKey("key")) {
+      String token = json["key"];
+      var check = await getUser(token);
+      if (check != null) {
+        User user = check;
+        return user;
+      } else {
+        return null;
+      }
+    }
+  } else if (res.statusCode == 400) {
+    print(res.statusCode);
+    if (json.containsKey("email")) {
+      return json["email"][0];
+    } else if (json.containsKey("password1")) {
+      return json["password1"][0];
+    } else if (json.containsKey("password2")) {
+      return json["password2"][0];
+    } else if (json.containsKey("username")) {
+      return json["username"][0];
+    }
+  } else {
+    return null;
+  }
+}
