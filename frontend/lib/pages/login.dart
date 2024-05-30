@@ -1,13 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:frontend/api/auth_api.dart';
+import 'package:frontend/fields/home/home_page.dart';
 import 'package:frontend/pages/register.dart';
+import '../models/user_cubid.dart';
+import '../models/user_model.dart';
 
+
+import '../theme.dart';
 import '../fields/fields.dart';
 import '../fields/text_button.dart';
-import '../theme.dart';
+import 'forget_password.dart';
 
 
-class SignInPage extends StatelessWidget {
+class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
+
+  @override
+  State<SignInPage> createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,32 +43,35 @@ class SignInPage extends StatelessWidget {
           horizontal: defaultMargin,
         ),
         children: [
-          Container(
-            margin: EdgeInsets.only(top: 50),
-            child: Image.asset(
-              'assets/img_login.png',
-            ),
-          ),
+          // Container(
+          //   margin: EdgeInsets.only(top: 50),
+          //   child: Image.asset(
+          //     'assets/img_login.png',
+          //   ),
+          // ),
           SizedBox(
-            height: 5,
+            height: 150,
           ),
           CustomField(
+            controller: emailController,
             iconUrl: 'assets/icon_email.png',
             hint: 'Email',
           ),
           CustomField(
+            controller: passwordController,
             iconUrl: 'assets/icon_password.png',
             hint: 'Password',
+            obsecure: true,
           ),
           Align(
             alignment: Alignment.centerRight,
             child: Container(
               child: TextButton(
                 onPressed: () {
-                  // Navigator.push(
-                    // context,
-                    // MaterialPageRoute(builder: (context) => ForgotPassPage()),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ForgotPassPage()),
+                  );
                 },
                 child: Text(
                   "Forgot Password?",
@@ -54,10 +83,37 @@ class SignInPage extends StatelessWidget {
               ),
             ),
           ),
+          //login
           CustomTextButton(
+            onTap: () async{
+              var authRes =
+              await userAuth(emailController.text, passwordController.text);
+              if(authRes.runtimeType == String){
+                showDialog(context: context, builder: (context){
+                  return Dialog(
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 100,
+                      width: 250,
+                      decoration: BoxDecoration(), child: Text(authRes),
+                    ),
+                  );
+                });
+              }
+              else if(authRes.runtimeType == User){
+                User user = authRes;
+                context.read<UserCubit>().emit(user);
+                Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                  return HomePage();
+                },
+                ));
+              }
+
+            },
             title: 'Login',
             margin: EdgeInsets.only(top: 50),
           ),
+          //
           Container(
             margin: EdgeInsets.only(
               top: 30,
