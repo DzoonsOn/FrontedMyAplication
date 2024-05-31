@@ -24,6 +24,7 @@ class CustomField extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           color: kWhiteColor,
+          width: 2,
         ),
         borderRadius: BorderRadius.circular(6),
       ),

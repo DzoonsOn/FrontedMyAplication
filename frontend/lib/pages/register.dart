@@ -46,23 +46,23 @@ class _SignUpPageState extends State<SignUpPage> {
             height: 5,
           ),
           CustomField(
-            iconUrl: 'assets/icon_name.png',
+            // iconUrl: 'assets/icon_name.png',
             hint: 'Username',
             controller: usernameController,
           ),
           CustomField(
-            iconUrl: 'assets/icon_email.png',
+            // iconUrl: 'assets/icon_email.png',
             hint: 'Email',
             controller: emailController,
           ),
           CustomField(
-            iconUrl: 'assets/icon_password.png',
+            // iconUrl: 'assets/icon_password.png',
             hint: 'Password',
             controller: passwordController,
             obsecure: true,
           ),
           CustomField(
-            iconUrl: 'assets/icon_password.png',
+            // iconUrl: 'assets/icon_password.png',
             hint: 'Confirm password',
             controller: confirm_passwordController,
             obsecure: true,
