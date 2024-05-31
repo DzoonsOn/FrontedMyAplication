@@ -31,7 +31,7 @@ class CustomTextButton extends StatelessWidget {
         child: Text(
           title,
           style: blackTextStyle.copyWith(
-            fontSize: 18,
+            fontSize: 24,
             fontWeight: bold,
           ),
         ),

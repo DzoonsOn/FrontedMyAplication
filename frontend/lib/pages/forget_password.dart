@@ -29,7 +29,7 @@ class ForgotPassPage extends StatelessWidget {
               height: 20,
             ),
             CustomField(
-              iconUrl: 'assets/icon_email.png',
+              // iconUrl: 'assets/icon_email.png',
               hint: 'Email',
             ),
             CustomTextButton(

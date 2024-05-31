@@ -54,12 +54,12 @@ class _SignInPageState extends State<SignInPage> {
           ),
           CustomField(
             controller: emailController,
-            iconUrl: 'assets/icon_email.png',
+            // iconUrl: 'assets/icon_email.png',
             hint: 'Email',
           ),
           CustomField(
             controller: passwordController,
-            iconUrl: 'assets/icon_password.png',
+            // iconUrl: 'assets/icon_password.png',
             hint: 'Password',
             obsecure: true,
           ),

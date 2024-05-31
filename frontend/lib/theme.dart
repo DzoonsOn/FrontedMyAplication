@@ -5,30 +5,30 @@ import 'package:flutter/material.dart';
 double defaultMargin = 30.0;
 
 // COLORS
-Color kBlackColor = Color(0xff292A2D);
+Color kBlackColor = Color(0xff000000);
 Color kWhiteColor = Color(0xffFFFFFF);
 Color kGreyColor = Color(0xff98999F);
-Color kBlueColor = Color(0xff5284E3);
-Color kBackgroundButtonColor = Color(0xffFCFCFD);
-Color kStrokeButtonColor = Color(0xffE5E5E5);
-Color bgColor = Color(0xff2eabff);
+Color kBlueColor = Color(0xff8B73BF);
+Color kBackgroundButtonColor = Color(0xffBF4136);
+Color kStrokeButtonColor = Color(0xffBF4136);
+Color bgColor = Color(0xff49D3F2);
 
 // TEXT STYLE
 
 // Define TextStyles using the custom Mulish font
 TextStyle blackTextStyle = TextStyle(
   color: kBlackColor,
-  fontFamily: 'Mulish',
+  fontFamily: 'Montserrat',
 );
 
 TextStyle whiteTextStyle = TextStyle(
   color: kWhiteColor,
-  fontFamily: 'Mulish',
+  fontFamily: 'Montserrat',
 );
 
 TextStyle blueTextStyle = TextStyle(
   color: kBlueColor,
-  fontFamily: 'Mulish',
+  fontFamily: 'Montserrat',
 );
 
 // FONT WEIGHTS
