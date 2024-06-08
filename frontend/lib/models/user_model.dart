@@ -1,9 +1,10 @@
-class User{
+class User {
   int? id;
   String? token;
   String? username;
-  String? email, first_name, last_name;
-
+  String? email;
+  String? first_name;
+  String? last_name;
 
   User({
     this.email,
@@ -12,15 +13,14 @@ class User{
     this.id,
     this.username,
   });
-  //{"pk":2,"username":"jan","email":"jjanek02@wp.pl","first_name":"","last_name":""}
 
-  factory User.fromJson(json){
+  factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      email: json["email"],
-      first_name: json["first_name"],
-      id: json["pk"],
-      last_name: json["last_name"],
-      username: json["username"],
+      id: json['pk'] as int?,
+      username: json['username'] as String?,
+      email: json['email'] as String?,
+      first_name: json['first_name'] as String?,
+      last_name: json['last_name'] as String?,
     );
   }
 }

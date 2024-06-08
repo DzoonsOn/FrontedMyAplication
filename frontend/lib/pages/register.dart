@@ -71,29 +71,49 @@ class _SignUpPageState extends State<SignUpPage> {
             title: 'Register',
             margin: EdgeInsets.only(top: 50),
             onTap: () async {
-              var authRes =  await registerUser(usernameController.text, emailController.text, passwordController.text, confirm_passwordController.text);
-              if(authRes.runtimeType == String){
-                showDialog(context: context, builder: (context){
-                  return Dialog(
-                    child: Container(
-                      alignment: Alignment.center,
-                      height: 100,
-                      width: 250,
-                      decoration: BoxDecoration(), child: Text(authRes),
-                    ),
-                  );
-                });
-              }
-              else if(authRes.runtimeType == User){
+              var authRes = await registerUser(
+                  usernameController.text,
+                  emailController.text,
+                  passwordController.text,
+                  confirm_passwordController.text
+              );
+
+              if (authRes.runtimeType == String) {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return Dialog(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)), // Rounded corners
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 100,
+                        width: 250,
+                        padding: EdgeInsets.symmetric(vertical: 20), // Adjust vertical padding
+                        decoration: BoxDecoration(
+                          // color: Colors.amber,
+                          borderRadius: BorderRadius.circular(20), // Ensures rounded corners
+                        ),
+                        child: Text(
+                          authRes,
+                          style: TextStyle(fontSize: 18), // Increased font size
+                          textAlign: TextAlign.center, // Center align the text
+                        ),
+                      ),
+                    );
+                  },
+                );
+              } else if (authRes.runtimeType == User) {
                 User user = authRes;
                 context.read<UserCubit>().emit(user);
-                Navigator.of(context).push(MaterialPageRoute(builder: (context){
-                  return HomePage();
-                },
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return HomePage();
+                  },
                 ));
               }
-            } ,
+            },
           ),
+
           Container(
             margin: EdgeInsets.only(
               top: 40,

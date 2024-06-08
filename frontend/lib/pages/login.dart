@@ -5,8 +5,6 @@ import 'package:frontend/fields/home/home_page.dart';
 import 'package:frontend/pages/register.dart';
 import '../models/user_cubid.dart';
 import '../models/user_model.dart';
-
-
 import '../theme.dart';
 import '../fields/fields.dart';
 import '../fields/text_button.dart';
@@ -15,7 +13,6 @@ import 'forget_password.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
-
   @override
   State<SignInPage> createState() => _SignInPageState();
 }
@@ -41,6 +38,7 @@ class _SignInPageState extends State<SignInPage> {
       body: ListView(
         padding: EdgeInsets.symmetric(
           horizontal: defaultMargin,
+          // horizontal: 5,
         ),
         children: [
           // Container(
@@ -85,35 +83,45 @@ class _SignInPageState extends State<SignInPage> {
           ),
           //login
           CustomTextButton(
-            onTap: () async{
-              var authRes =
-              await userAuth(emailController.text, passwordController.text);
-              if(authRes.runtimeType == String){
-                showDialog(context: context, builder: (context){
-                  return Dialog(
-                    child: Container(
-                      alignment: Alignment.center,
-                      height: 100,
-                      width: 250,
-                      decoration: BoxDecoration(), child: Text(authRes),
-                    ),
-                  );
-                });
-              }
-              else if(authRes.runtimeType == User){
+            onTap: () async {
+              var authRes = await userAuth(emailController.text, passwordController.text);
+              if (authRes.runtimeType == String) {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return Dialog(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)), // Rounded corners
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 100,
+                        width: 250,
+                        padding: EdgeInsets.symmetric(vertical: 20), // Adjust vertical padding
+                        decoration: BoxDecoration(
+                          // color: Colors.amber,
+                          borderRadius: BorderRadius.circular(20), // Ensures rounded corners
+                        ),
+                        child: Text(
+                          authRes,
+                          style: TextStyle(fontSize: 18), // Increased font size
+                          textAlign: TextAlign.center, // Center align the text
+                        ),
+                      ),
+                    );
+                  },
+                );
+              } else if (authRes.runtimeType == User) {
                 User user = authRes;
                 context.read<UserCubit>().emit(user);
-                Navigator.of(context).push(MaterialPageRoute(builder: (context){
-                  return HomePage();
-                },
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return HomePage();
+                  },
                 ));
               }
-
             },
             title: 'Login',
             margin: EdgeInsets.only(top: 50),
           ),
-          //
           Container(
             margin: EdgeInsets.only(
               top: 30,

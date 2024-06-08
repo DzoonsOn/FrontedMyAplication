@@ -82,6 +82,7 @@ Future<dynamic> registerUser(
   // "key":"0ed6082de696dbf2671145344b6d7281024f6925"
 
   Map json = jsonDecode(res.body);
+  print(res.body);
   if (res.statusCode == 200 || res.statusCode == 201) {
     if (json.containsKey("key")) {
       String token = json["key"];
@@ -103,6 +104,9 @@ Future<dynamic> registerUser(
       return json["password2"][0];
     } else if (json.containsKey("username")) {
       return json["username"][0];
+    }
+    if (json.containsKey("non_field_errors")) {
+      return json["non_field_errors"][0];
     }
   } else {
     return null;
