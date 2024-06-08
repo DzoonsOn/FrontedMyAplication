@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../models/user_cubid.dart';
 import '../../models/user_model.dart';
-// import 'SchedulePage.dart';
+import 'SchedulePage.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -74,14 +74,14 @@ class HomePage extends StatelessWidget {
         ],
         selectedItemColor: Theme.of(context).primaryColor,
         unselectedItemColor: Colors.grey,
-        // onTap: (index) {
-        //   if (index == 1) {
-        //     Navigator.push(
-        //       context,
-        //       MaterialPageRoute(builder: (context) => const SchedulePage()),
-        //     );
-        //   }
-        // },
+        onTap: (index) {
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SchedulePage()),
+            );
+          }
+        },
       ),
     );
   }
